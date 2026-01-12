@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 text-center mb-4">
+                <div class="card-body p-5">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle text-success fa-5x"></i>
+                    </div>
+                    <h2 class="fw-bold text-primary mb-3">تم استلام وثيقتك بنجاح!</h2>
+                    <p class="lead text-muted">رقم الطلب الخاص بك هو: <strong>#{{ order.id }}</strong></p>
+                    <hr class="my-4">
+
+                    <div class="alert alert-info py-3 shadow-sm border-0">
+                        <i class="fas fa-robot me-2"></i>
+                        يجري الآن تحليل الوثيقة وتدقيقها وفقاً لأنظمة <strong>{{ order.country }}</strong> بواسطة الذكاء الاصطناعي العالمي.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm border-0 overflow-hidden">
+                <div class="card-header bg-dark text-white p-3">
+                    <h5 class="mb-0"><i class="fas fa-file-invoice-dollar me-2 text-warning"></i> الفاتورة التقديرية (هندسة قانونية)</h5>
+                </div>
+                <div class="card-body p-4">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td class="text-muted">نوع الخدمة:</td>
+                                <td class="text-end fw-bold text-dark">{{ order.get_service_type_display }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">مجال التعاقد:</td>
+                                <td class="text-end fw-bold text-dark">{{ order.get_contract_field_display }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">العملة المفترضة:</td>
+                                <td class="text-end fw-bold text-dark">دولار أمريكي (USD)</td>
+                            </tr>
+                            <tr class="border-top">
+                                <td class="text-muted pt-3">رسوم الجدية (تدفع الآن):</td>
+                                <td class="text-end pt-3 text-danger fw-bold">${{ seriousness_fee }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">أتعاب الهندسة التقديرية (المتبقية):</td>
+                                <td class="text-end text-dark fw-bold">${{ order.estimated_price }}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="table-light">
+                                <th class="fs-5">الإجمالي الكلي (التقديري):</th>
+                                <th class="text-end fs-5 text-primary">${{ total_estimated }}</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <div class="bg-light p-3 rounded mt-3 small text-muted">
+                        <i class="fas fa-info-circle me-1"></i>
+                        هذا السعر تقديري بناءً على حجم الوثيقة وتعقيدها، وسيتم تأكيده بواسطة الخبير البشري بعد مراجعة تقرير الذكاء الاصطناعي.
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button class="btn btn-primary btn-lg shadow-sm" onclick="window.print()">
+                            <i class="fas fa-download me-2"></i> تحميل الفاتورة (PDF)
+                        </button>
+                        <a href="{% url 'home' %}" class="btn btn-outline-secondary">العودة للرئيسية</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 text-center">
+                <div class="badge bg-warning text-dark p-2 px-3">
+                    <span class="spinner-grow spinner-grow-sm me-1" role="status"></span>
+                    حالة الطلب: قيد المراجعة الفنية من قبل الخبير
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body { background: #f0f2f5; }
+    .card { border-radius: 15px; }
+    .table td, .table th { padding: 12px 0; }
+    @media print {
+        .btn, .badge { display: none; }
+    }
+</style>
+{% endblock %}

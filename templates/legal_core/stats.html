@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-primary"><i class="fas fa-chart-pie"></i> تحليل قوة المكتبة القانونية</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-left-primary">
+                <div class="card-body">
+                    <h6 class="text-muted">إجمالي القوانين والمراجع</h6>
+                    <h2 class="display-4 font-weight-bold">{{ total_refs }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-left-success">
+                <div class="card-body">
+                    <h6 class="text-muted">نسبة معالجة الـ AI</h6>
+                    <h2 class="display-4 font-weight-bold text-success">{{ processing_rate|floatformat:1 }}%</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">التغطية الجغرافية</div>
+                <div class="card-body">
+                    <canvas id="countryChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">تحليل التخصصات القانونية</div>
+                <div class="card-body">
+                    <canvas id="tagChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // بيانات الدول
+    const countryCtx = document.getElementById('countryChart').getContext('2d');
+    new Chart(countryCtx, {
+        type: 'bar',
+        data: {
+            labels: [{% for s in country_stats %}"{{ s.country }}",{% endfor %}],
+            datasets: [{
+                label: 'عدد القوانين',
+                data: [{% for s in country_stats %}{{ s.total }},{% endfor %}],
+                backgroundColor: '#007bff'
+            }]
+        }
+    });
+
+    // بيانات التصنيفات
+    const tagCtx = document.getElementById('tagChart').getContext('2d');
+    new Chart(tagCtx, {
+        type: 'doughnut',
+        data: {
+            labels: [{% for tag, count in tag_stats.items %}"{{ tag }}",{% endfor %}],
+            datasets: [{
+                data: [{% for tag, count in tag_stats.items %}{{ count }},{% endfor %}],
+                backgroundColor: ['#28a745', '#ffc107', '#dc3545', '#17a2b8', '#6610f2']
+            }]
+        }
+    });
+</script>
+{% endblock %}

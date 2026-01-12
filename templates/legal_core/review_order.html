@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>مراجعة الطلب #{{ order.id }} - {{ order.client_name }}</h3>
+        <span class="badge bg-info p-2">الدولة: {{ order.country }}</span>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-dark text-white">النص المستخرج من الوثيقة</div>
+                    <div class="card-body bg-light">
+                        <pre style="white-space: pre-wrap; height: 500px; overflow-y: scroll;">{{ order.extracted_text }}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <div class="card shadow-sm h-100 border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <i class="fas fa-magic me-2"></i> تقرير هندسة الوثيقة (مقترح الذكاء الاصطناعي)
+                    </div>
+                    <div class="card-body">
+                        <p class="small text-muted mb-3">يمكنك التعديل على النص أدناه، إضافة المصادر، أو تغيير التوصيات قبل الإرسال النهائي.</p>
+                        <textarea name="final_analysis" class="form-control" style="height: 500px;">{{ order.ai_analysis }}</textarea>
+                    </div>
+                    <div class="card-footer bg-white border-0 d-flex justify-content-end gap-2">
+                        <a href="{% url 'expert_dashboard' %}" class="btn btn-secondary">إلغاء</a>
+                        <button type="submit" class="btn btn-success px-5">اعتماد التقرير وإرساله للعميل</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

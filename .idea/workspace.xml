@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d6a9f958-3343-414e-8bd5-28e9b41e3c1b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/hujja_platform.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/legal_core/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/legal_core/expert_dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/legal_core/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/legal_core/importer_tool.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/legal_core/link_explorer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/legal_core/signals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/legal_core/sources.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/legal_core/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/legal_core/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/legal_core/about.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/legal_core/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/hujja_platform/settings.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/hujja_platform/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/legal_core/admin.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/legal_core/apps.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/legal_core/expert_dashboard.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/legal_core/forms.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/legal_core/importer_tool.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/legal_core/link_explorer.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/legal_core/models.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/legal_core/signals.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/legal_core/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/legal_core/utils.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/legal_core/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/requirements.txt" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/base.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/ai_analysis.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/compare.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/dashboard.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/home.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/index.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/library.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/login.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/order_form.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/order_success.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/pdf_rebort.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/pdf_report_template.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/profile.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/results.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/review_order.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/stats.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/legal_core/success.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/templates/search_results.html" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="383hUnNPDlJYHkQSagDbd1oFAFT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Sayed Hemdan/PycharmProjects/PythonProject/PythonProject/hujja_platform/static/images&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Sayed Hemdan\PycharmProjects\PythonProject\PythonProject\hujja_platform\static\images" />
+      <recent name="C:\Users\Sayed Hemdan\PycharmProjects\PythonProject\PythonProject\hujja_platform\templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Sayed Hemdan\PycharmProjects\PythonProject\PythonProject\hujja_platform\templates\legal_core" />
+      <recent name="C:\Users\Sayed Hemdan\PycharmProjects\PythonProject\PythonProject\hujja_platform\legal_core" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-ce6832f46686-7b97d883f26b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.25557.178" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d6a9f958-3343-414e-8bd5-28e9b41e3c1b" name="Changes" comment="" />
+      <created>1768034179259</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1768034179259</updated>
+    </task>
+    <servers />
+  </component>
+</project>

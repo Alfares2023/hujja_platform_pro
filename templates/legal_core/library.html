@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-8">
+            <h2 class="display-5 text-primary">
+                <i class="fas fa-university"></i> المكتبة القانونية الذكية
+            </h2>
+            <p class="text-muted">أرشيف الأنظمة واللوائح المحرك لذكاء "حُجَّة" الاصطناعي.</p>
+        </div>
+        <div class="col-md-4 text-left">
+            <button type="button" class="btn btn-success btn-lg shadow-sm" data-toggle="modal" data-target="#uploadModal">
+                <i class="fas fa-plus-circle"></i> إضافة قانون من جهازي
+            </button>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <form method="get" action="." class="input-group">
+                <input type="text" name="q" class="form-control form-control-lg shadow-sm" placeholder="ابحث عن مادة قانونية أو دولة معينة..." value="{{ query|default:'' }}">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i> بحث
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow border-0">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0 text-center">
+                <thead class="bg-light">
+                    <tr>
+                        <th>عنوان المرجع</th>
+                        <th>الدولة</th>
+                        <th>التصنيف</th>
+                        <th>تاريخ الرفع</th>
+                        <th>الملف</th>
+                        <th>الحالة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ref in references %}
+                    <tr>
+                        <td class="font-weight-bold">{{ ref.title }}</td>
+                        <td><span class="badge badge-info px-3">{{ ref.country }}</span></td>
+                        <td>{{ ref.get_ref_type_display }}</td>
+                        <td>{{ ref.created_at|date:"Y/m/d" }}</td>
+                        <td>
+                            {% if ref.attachment %}
+                            <a href="{{ ref.attachment.url }}" target="_blank" class="text-danger">
+                                <i class="fas fa-file-pdf fa-lg"></i>
+                            </a>
+                            {% else %}
+                            <span class="text-muted">-</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if ref.content %}
+                            <span class="badge badge-success"><i class="fas fa-check-circle"></i> جاهز</span>
+                            {% else %}
+                            <span class="badge badge-warning">معالجة...</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="py-5 text-muted text-center">
+                            <i class="fas fa-folder-open fa-3x mb-3"></i><br>المكتبة فارغة حالياً.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content shadow-lg border-0" style="border-radius: 20px;">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title"><i class="fas fa-cloud-upload-alt"></i> رفع مرجع جديد</h5>
+                <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body bg-light">
+                    <div class="row">
+                        <div class="col-md-6 mb-3"><label>عنوان القانون</label>{{ upload_form.title }}</div>
+                        <div class="col-md-6 mb-3"><label>الدولة</label>{{ upload_form.country }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3"><label>نوع المادة</label>{{ upload_form.ref_type }}</div>
+                        <div class="col-md-6 mb-3"><label>وسوم البحث</label>{{ upload_form.tags }}</div>
+                    </div>
+                    <div class="form-group border p-4 bg-white rounded shadow-sm">
+                        <label class="text-primary font-weight-bold">اختر ملف الـ PDF:</label>
+                        {{ upload_form.attachment }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary px-5">حفظ ومعالجة</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="chat-bubble" onclick="toggleChat()" style="position: fixed; bottom: 30px; left: 30px; cursor: pointer; z-index: 1050; transition: transform 0.3s;">
+    <img src="https://cdn-icons-png.flaticon.com/512/8149/8149170.png" width="65" class="shadow-lg rounded-circle border border-white">
+</div>
+
+<div id="chat-window" class="card shadow-lg d-none border-0" style="position: fixed; bottom: 105px; left: 30px; width: 350px; z-index: 1050; border-radius: 15px; overflow: hidden;">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <span class="font-weight-bold"><i class="fas fa-robot"></i> مساعد حُجَّة الذكي</span>
+        <button class="btn btn-sm text-white" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="chat-body" class="card-body bg-light" style="height: 350px; overflow-y: auto; font-size: 0.9rem;">
+        <div class="bg-white p-2 rounded shadow-sm mb-3 border-right border-primary" style="border-right-width: 4px !important;">
+            أهلاً بك! أنا مساعدك الذكي. يمكنني مساعدتك في البحث داخل المكتبة أو الإجابة على استفسارات قانونية سريعة.
+        </div>
+    </div>
+    <div class="card-footer bg-white border-0">
+        <div class="input-group">
+            <input type="text" id="user-input" class="form-control border-0 bg-light" placeholder="اكتب سؤالك هنا..." onkeypress="handleKeyPress(event)">
+            <div class="input-group-append">
+                <button class="btn btn-primary" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .badge { font-size: 0.85em; padding: 7px 12px; border-radius: 50px; }
+    #chat-bubble:hover { transform: scale(1.1); }
+    #chat-body::-webkit-scrollbar { width: 5px; }
+    #chat-body::-webkit-scrollbar-thumb { background: #007bff; border-radius: 10px; }
+    .user-msg { background: #e3f2fd; padding: 8px; border-radius: 10px; margin-bottom: 10px; text-align: right; }
+    .bot-msg { background: #fff; padding: 8px; border-radius: 10px; margin-bottom: 10px; border-right: 3px solid #007bff; }
+</style>
+
+<script>
+function toggleChat() {
+    const win = document.getElementById('chat-window');
+    win.classList.toggle('d-none');
+}
+
+function handleKeyPress(e) {
+    if (e.key === 'Enter') sendMessage();
+}
+
+function sendMessage() {
+    let input = document.getElementById('user-input');
+    let body = document.getElementById('chat-body');
+    let message = input.value.trim();
+
+    if(!message) return;
+
+    // رسالة المستخدم
+    body.innerHTML += `<div class="user-msg"><b>أنت:</b><br>${message}</div>`;
+    input.value = '';
+    body.scrollTop = body.scrollHeight;
+
+    // جلب الرد من السيرفر
+    fetch(`/library/chat/?message=${encodeURIComponent(message)}`)
+        .then(response => response.json())
+        .then(data => {
+            body.innerHTML += `<div class="bot-msg"><b>حُجَّة:</b><br>${data.reply}</div>`;
+            body.scrollTop = body.scrollHeight;
+        })
+        .catch(err => {
+            body.innerHTML += `<div class="bot-msg text-danger">تعذر الاتصال بالمساعد حالياً.</div>`;
+        });
+}
+</script>
+{% endblock %}

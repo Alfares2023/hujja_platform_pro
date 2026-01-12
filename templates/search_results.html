@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <h3 class="mb-4 text-primary fw-bold">
+            <i class="fas fa-search-dollar me-2"></i> نتائج البحث عن: "{{ query }}"
+        </h3>
+
+        <form action="{% url 'legal_search' %}" method="get" class="mb-5">
+            <div class="input-group input-group-lg shadow-sm">
+                <input type="text" name="q" class="form-control border-primary" placeholder="ابحث عن مادة، قانون، أو مصطلح..." value="{{ query }}">
+                <button class="btn btn-primary px-4" type="submit">
+                    <i class="fas fa-search"></i> بحث جديد
+                </button>
+            </div>
+        </form>
+
+        {% if results %}
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <p class="text-muted mb-0">تم العثور على <strong>{{ count }}</strong> نتيجة في المكتبة الرقمية</p>
+                <span class="badge bg-info text-dark">تحديث فوري</span>
+            </div>
+
+            {% for law in results %}
+                <div class="card mb-4 shadow-sm border-0 border-start border-primary border-5 hover-shadow transition">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h5 class="card-title fw-bold text-dark mb-1">{{ law.title }}</h5>
+                            <span class="badge bg-secondary">{{ law.get_country_display }}</span>
+                        </div>
+
+                        <p class="text-muted small mb-3">
+                            <i class="far fa-calendar-alt me-1"></i> تم الأرشفة في: {{ law.created_at|date:"Y-m-d" }}
+                        </p>
+
+                        <p class="card-text text-secondary bg-light p-3 rounded" style="font-size: 0.95rem;">
+                            {{ law.content|truncatewords:50 }}
+                        </p>
+
+                        <div class="d-flex gap-2 mt-3">
+                            <a href="{% url 'ai_analyze' law.id %}" class="btn btn-primary shadow-sm">
+                                <i class="fas fa-magic me-1"></i> هندسة الرأي القانوني (AI)
+                            </a>
+
+                            <a href="#" class="btn btn-outline-dark shadow-sm">
+                                <i class="fas fa-file-alt me-1"></i> عرض النص كاملاً
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="text-center mt-5 p-5 bg-white rounded shadow-sm">
+                <i class="fas fa-search-minus fa-5x text-light mb-4"></i>
+                <h4 class="text-muted">عذراً، لم نجد ما يطابق بحثك</h4>
+                <p class="text-secondary">تأكد من كتابة المصطلحات بشكل صحيح، أو ابحث في تصنيف مختلف.</p>
+                <a href="/" class="btn btn-link">العودة للرئيسية</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .hover-shadow:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        transition: all 0.3s ease;
+    }
+    .transition { transition: all 0.3s ease; }
+</style>
+
+{% endblock %}

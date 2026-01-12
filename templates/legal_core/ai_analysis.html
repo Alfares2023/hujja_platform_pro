@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-dark text-white">المصدر القانوني</div>
+            <div class="card-body">
+                <h5>{{ law.title }}</h5>
+                <span class="badge bg-primary">{{ law.get_country_display }}</span>
+                <hr>
+                <p class="small text-muted">تم استخراج هذا التحليل بناءً على المواد المؤرشفة في مكتبتكم.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card shadow border-0">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <span><i class="fas fa-robot"></i> هندسة الرأي القانوني (AI)</span>
+                <button class="btn btn-light btn-sm" onclick="window.print()">
+                    <i class="fas fa-print"></i> طباعة التقرير
+                </button>
+            </div>
+            <div class="card-body bg-light" style="line-height: 1.8;">
+                <div class="p-3 bg-white rounded shadow-sm">
+                    {{ analysis|linebreaks }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="{% url 'export_ai_report' law.id %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="ai_content" value="{{ analysis }}">
+    <button type="submit" class="btn btn-success shadow-sm">
+        <i class="fas fa-file-pdf me-1"></i> تحميل كتقرير رسمي PDF
+    </button>
+</form>
+{% endblock %}

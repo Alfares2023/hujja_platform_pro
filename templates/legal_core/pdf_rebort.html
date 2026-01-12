@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+            @top-center { content: "منصة حُجَّة للذكاء القانوني"; font-family: sans-serif; font-size: 10px; color: #777; }
+            @bottom-center { content: "صفحة " counter(page); font-family: sans-serif; font-size: 10px; color: #777; }
+        }
+        body {
+            font-family: 'Arial', sans-serif; /* يفضل استخدام خط يدعم العربية */
+            direction: rtl;
+            text-align: right;
+            color: #333;
+        }
+        .header {
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: block;
+            height: 80px;
+        }
+        .logo {
+            float: left;
+            width: 80px;
+        }
+        .title-section {
+            float: right;
+            text-align: right;
+        }
+        h1 { color: #0056b3; margin: 0; font-size: 24px; }
+        .meta-info { color: #666; font-size: 12px; margin-top: 5px; }
+
+        /* جدول المقارنة */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .comparison-table th {
+            background-color: #f2f2f2;
+            padding: 12px;
+            border: 1px solid #ddd;
+            color: #0056b3;
+            width: 50%;
+            font-size: 14px;
+        }
+        .comparison-table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+            font-size: 12px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+        .bg-law1 { background-color: #fcfcfc; }
+        .bg-law2 { background-color: #f9fcff; }
+
+        /* صندوق رأي الذكاء الاصطناعي */
+        .ai-box {
+            background-color: #e8f4fd;
+            border: 1px solid #b8daff;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+        .ai-title {
+            color: #004085;
+            font-weight: bold;
+            border-bottom: 1px solid #b8daff;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        .footer-note {
+            margin-top: 50px;
+            font-size: 10px;
+            text-align: center;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+    <div class="title-section">
+        <h1 style="font-size: 20px;">{{ firm_name }}</h1>
+        <div class="meta-info">تقرير مقارنة قانونية</div>
+        <div class="meta-info">التاريخ: {{ date|date:"Y-m-d" }}</div>
+    </div>
+
+    <img src="{{ logo_url }}" class="logo" style="height: 70px; width: auto;">
+</div>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>{{ law1.title }} <br><span style="font-size:10px; color:#555">({{ law1.country }})</span></th>
+                <th>{{ law2.title }} <br><span style="font-size:10px; color:#555">({{ law2.country }})</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bg-law1">{{ content1|linebreaksbr }}</td>
+                <td class="bg-law2">{{ content2|linebreaksbr }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="ai-box">
+        <div class="ai-title">🤖 تحليل المستشار الذكي (حُجَّة):</div>
+        <p style="font-size: 12px;">
+            بناءً على النصوص المذكورة أعلاه، يتبين أن هناك تبايناً في التناول التشريعي.
+            يميل القانون الأول إلى التفصيل في الإجراءات، بينما يركز القانون الثاني على النتائج الموضوعية.
+            ينصح بالرجوع إلى اللوائح التنفيذية لمزيد من التفاصيل حول التطبيق العملي.
+        </p>
+    </div>
+
+    <div class="footer-note">
+        تم إنشاء هذا التقرير آلياً بواسطة منصة حُجَّة القانونية. المعلومات الواردة هنا للاسترشاد  تمت مراجعتها بمعرفة المستشار القانونى للمنصة.
+    </div>
+
+</body>
+</html>

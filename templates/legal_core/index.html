@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حُجَّة | هندسة العقود والوثائق القانونية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #b8860b; --dark: #2c3e50; --bg: #f9f7f2; }
+        body { margin: 0; padding: 0; background-color: var(--bg); font-family: 'Tajawal', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+
+        /* الأيقونات العلوية */
+        .top-nav { position: absolute; top: 40px; width: 85%; display: flex; justify-content: space-between; }
+        .nav-item { cursor: pointer; text-align: center; transition: 0.3s; color: var(--dark); font-weight: bold; }
+        .nav-item:hover { transform: translateY(-5px); color: var(--gold); }
+        .nav-icon { font-size: 45px; margin-bottom: 5px; }
+
+        /* الشعار والرسالة */
+        .main-logo { width: 320px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); }
+        .hero-text { margin-top: 25px; color: var(--dark); max-width: 650px; font-size: 1.3rem; line-height: 1.8; text-align: center; font-weight: 500; }
+
+        /* النافذة المنبثقة (Modal) */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(5px); }
+        .services-card { background: white; padding: 40px; border-radius: 20px; width: 80%; max-width: 900px; position: relative; display: flex; justify-content: space-around; gap: 20px; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 25px; cursor: pointer; color: var(--dark); }
+
+        .service-box { flex: 1; border: 1px solid #eee; padding: 25px; border-radius: 15px; text-align: center; transition: 0.3s; cursor: pointer; }
+        .service-box:hover { border-color: var(--gold); background: #fffcf5; transform: scale(1.05); }
+        .service-box h3 { color: var(--gold); margin-bottom: 15px; font-size: 1.4rem; }
+        .service-box p { font-size: 0.95rem; color: #666; line-height: 1.6; }
+        .service-box .icon { font-size: 40px; margin-bottom: 15px; display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <div class="nav-item" onclick="toggleModal('servicesModal')">
+            <div class="nav-icon">🛠️</div>
+            <div>خدمات المنصة</div>
+        </div>
+
+        <div class="nav-item" onclick="alert('سيتم عرض النبذة الوافية عن خبرة الـ 30 عاماً')">
+            <div class="nav-icon">📜</div>
+            <div>عن حُجَّة</div>
+        </div>
+    </div>
+
+    <img src="{% static 'images/logo.png' %}" alt="شعار حجة" class="main-logo">
+    <div class="hero-text">حُجَّة: هندسة قانونية ذكية تحت إشراف خبرة دولية.</div>
+
+    <div class="modal-overlay" id="servicesModal">
+        <div class="services-card">
+            <span class="close-btn" onclick="toggleModal('servicesModal')">&times;</span>
+
+            <div class="service-box" onclick="window.location.href='/order/AUDIT'">
+                <span class="icon">🔍</span>
+                <h3>تطهير وتدقيق</h3>
+                <p>تحليل خوارزمي لكشف العوار القانوني والثغرات في عقودك القائمة.</p>
+            </div>
+
+            <div class="service-box" onclick="window.location.href='/order/ENGINEER'">
+                <span class="icon">🏗️</span>
+                <h3>هندسة صياغة</h3>
+                <p>توليد عقود جديدة متوازنة وعادلة باستخدام الذكاء الاصطناعي الخبير.</p>
+            </div>
+
+            <div class="service-box" onclick="window.location.href='/order/ADR'">
+                <span class="icon">🤝</span>
+                <h3>حصانة النزاعات</h3>
+                <p>صياغة بنود ذكية لفض النزاعات بالطرق البديلة تضمن حماية مستقبلك.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+        }
+    </script>
+</body>
+</html>
